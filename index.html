@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John J. Hegener — Principal UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0f0f0d;
+    --ink-60: rgba(15,15,13,0.6);
+    --ink-20: rgba(15,15,13,0.12);
+    --paper: #f5f3ee;
+    --paper-warm: #ede9e0;
+    --accent: #c8441a;
+    --accent-light: rgba(200,68,26,0.08);
+    --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-60);
+  }
+
+  .serif { font-family: var(--serif); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(245,243,238,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--ink-20);
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-60);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    position: relative;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px 80px 48px;
+    position: relative;
+  }
+
+  .hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-kicker-line {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(56px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-60);
+    margin-top: 16px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-desc {
+    max-width: 380px;
+    margin-top: 32px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-60);
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border: 1px solid var(--ink-20);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-right {
+    background: var(--paper-warm);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.2s 0.2s ease both;
+  }
+
+  .hero-right-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 48px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ink-20);
+    border: 1px solid var(--ink-20);
+  }
+
+  .hero-stat {
+    background: var(--paper);
+    padding: 28px 24px;
+  }
+
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .hero-stat-num span {
+    color: var(--accent);
+  }
+
+  .hero-stat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-60);
+    margin-top: 6px;
+  }
+
+  /* Geometric decoration */
+  .hero-geo {
+    position: absolute;
+    top: 48px; right: 48px;
+    width: 180px; height: 180px;
+    border: 1px solid var(--ink-20);
+    border-radius: 50%;
+    animation: spin 40s linear infinite;
+  }
+  .hero-geo::after {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px; right: 20px; bottom: 20px;
+    border: 1px solid var(--ink-20);
+    border-radius: 50%;
+  }
+
+  /* ─── SECTION LAYOUTS ─── */
+  section { padding: 120px 48px; }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 32px;
+    margin-bottom: 72px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-60);
+    padding-top: 8px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--ink-60);
+    margin-top: 12px;
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  /* ─── WORK / CASE STUDIES ─── */
+  #work { background: var(--ink); color: var(--paper); }
+  #work .section-num { color: rgba(245,243,238,0.4); }
+  #work .section-title { color: var(--paper); }
+  #work .section-subtitle { color: rgba(245,243,238,0.5); }
+
+  .cases-grid {
+    display: grid;
+    gap: 2px;
+  }
+
+  .case-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+    gap: 40px;
+    padding: 40px 0;
+    border-top: 1px solid rgba(245,243,238,0.1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  .case-item:hover { background: rgba(245,243,238,0.04); }
+
+  .case-item:hover .case-arrow {
+    transform: translate(4px, -4px);
+    color: var(--accent);
+  }
+
+  .case-idx {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(245,243,238,0.3);
+    padding-top: 4px;
+  }
+
+  .case-main {}
+
+  .case-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(245,243,238,0.2);
+    color: rgba(245,243,238,0.5);
+  }
+
+  .tag.accent { border-color: var(--accent); color: var(--accent); }
+
+  .case-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .case-client {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,243,238,0.4);
+    margin-bottom: 16px;
+  }
+
+  .case-desc {
+    font-size: 14px;
+    color: rgba(245,243,238,0.55);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  .case-outcome {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: rgba(200,68,26,0.1);
+    border-left: 2px solid var(--accent);
+    font-size: 13px;
+    color: rgba(245,243,238,0.7);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  .case-arrow {
+    font-size: 20px;
+    color: rgba(245,243,238,0.3);
+    transition: transform 0.3s, color 0.3s;
+    padding-top: 4px;
+  }
+
+  /* Expandable detail panel */
+  .case-detail {
+    grid-column: 1 / -1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
+    opacity: 0;
+  }
+
+  .case-detail.open {
+    max-height: 600px;
+    opacity: 1;
+  }
+
+  .case-detail-inner {
+    padding: 32px 0 40px 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+
+  .detail-block h4 {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .detail-block p {
+    font-size: 13px;
+    color: rgba(245,243,238,0.6);
+    line-height: 1.75;
+  }
+
+  .detail-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .detail-skill {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    background: rgba(245,243,238,0.06);
+    color: rgba(245,243,238,0.5);
+  }
+
+  /* ─── EXPERTISE ─── */
+  #expertise { background: var(--paper-warm); }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--ink-20);
+    border: 1px solid var(--ink-20);
+  }
+
+  .expertise-card {
+    background: var(--paper-warm);
+    padding: 48px 36px;
+    transition: background 0.3s;
+  }
+
+  .expertise-card:hover { background: var(--paper); }
+
+  .expertise-icon {
+    font-size: 11px;
+    font-family: var(--mono);
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .expertise-name {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .expertise-desc {
+    font-size: 14px;
+    color: var(--ink-60);
+    line-height: 1.75;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  .about-left {
+    padding: 120px 64px 120px 48px;
+    border-right: 1px solid var(--ink-20);
+  }
+
+  .about-right {
+    padding: 120px 48px 120px 64px;
+    background: var(--paper-warm);
+  }
+
+  .about-body {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-top: 48px;
+  }
+
+  .about-body em { color: var(--accent); font-style: italic; }
+
+  .skills-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 48px;
+  }
+
+  .skill-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ink-20);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-60);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .skill-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .timeline {
+    margin-top: 8px;
+  }
+
+  .timeline-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--ink-20);
+  }
+
+  .timeline-year {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 2px;
+  }
+
+  .timeline-company {
+    font-size: 13px;
+    color: var(--ink-60);
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 120px 48px;
+  }
+
+  #contact .section-title { color: var(--paper); }
+
+  .contact-tagline {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 36px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,243,238,0.5);
+    max-width: 600px;
+    margin: 24px auto 64px;
+    line-height: 1.4;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 36px;
+    border: 1px solid rgba(245,243,238,0.15);
+    color: var(--paper);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    background: rgba(200,68,26,0.08);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(245,243,238,0.08);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(245,243,238,0.3);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--ink-20); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 80px 24px 48px; }
+    .hero-right { min-height: 300px; }
+    .hero-right-inner { padding: 24px; }
+
+    section { padding: 80px 24px; }
+    .section-header { grid-template-columns: 1fr; gap: 16px; }
+
+    .case-item { grid-template-columns: 1fr auto; }
+    .case-idx { display: none; }
+    .case-detail-inner { padding: 24px 0; grid-template-columns: 1fr; gap: 20px; }
+
+    .expertise-grid { grid-template-columns: 1fr; }
+
+    #about { grid-template-columns: 1fr; }
+    .about-left { border-right: none; border-bottom: 1px solid var(--ink-20); padding: 80px 24px; }
+    .about-right { padding: 80px 24px; }
+
+    .contact-links { flex-direction: column; align-items: center; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a class="nav-name" href="#">John J. Hegener</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-kicker">
+      <div class="hero-kicker-line"></div>
+      <span class="label">Principal UX &amp; Product Designer</span>
+    </div>
+    <h1 class="hero-name">John<br><em>Hegener</em></h1>
+    <p class="hero-title">20+ years shaping digital experience</p>
+    <p class="hero-desc">Creating meaningful digital experiences through human-centered design and strategic thinking — for Fortune 500 companies, startups, and everything in between.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">View Case Studies →</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-geo"></div>
+    <div class="hero-right-inner">
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">20<span>+</span></div>
+          <div class="hero-stat-label">Years Experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">50<span>+</span></div>
+          <div class="hero-stat-label">Global Markets</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="font-size:36px">Fortune<br><span>500</span></div>
+          <div class="hero-stat-label">Client Roster</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">9<span>+</span></div>
+          <div class="hero-stat-label">Industries Served</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CASE STUDIES ─── -->
+<section id="work">
+  <div class="section-header reveal">
+    <span class="section-num label">01 /</span>
+    <div>
+      <h2 class="section-title">Selected<br><em>Case Studies</em></h2>
+      <p class="section-subtitle">Over a decade transforming complex business challenges into intuitive digital experiences across healthcare, finance, fitness, and enterprise technology.</p>
+    </div>
+  </div>
+
+  <div class="cases-grid">
+
+    <!-- CASE 1 -->
+    <div class="case-item reveal" onclick="toggleCase(this)">
+      <span class="case-idx">01</span>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="tag accent">2024–2025</span>
+          <span class="tag">Product Design</span>
+          <span class="tag">E-Commerce</span>
+        </div>
+        <h3 class="case-title">Interactive Product Locator</h3>
+        <div class="case-client">PharmaCann, Inc.</div>
+        <p class="case-desc">Led end-to-end UX redesign of a Mapbox-powered cannabis product locator — eliminating friction that drove high customer service inquiries and abandoned purchases.</p>
+        <div class="case-outcome">↑ 35% reduction in customer inquiries · ↑ 20% task completion improvement</div>
+      </div>
+      <span class="case-arrow">↗</span>
+      <div class="case-detail">
+        <div class="case-detail-inner">
+          <div class="detail-block">
+            <h4>My Role</h4>
+            <p>Principal UX Designer — end-to-end design over ~2 months, collaborating with PMs, engineers, and stakeholders.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Process</h4>
+            <p>Stakeholder interviews · usability testing · journey mapping · iterative prototyping and validation with Mapbox integration.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Skills Used</h4>
+            <div class="detail-skills">
+              <span class="detail-skill">Mapbox</span>
+              <span class="detail-skill">User Research</span>
+              <span class="detail-skill">Figma</span>
+              <span class="detail-skill">Accessibility</span>
+              <span class="detail-skill">Journey Mapping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case-item reveal" onclick="toggleCase(this)">
+      <span class="case-idx">02</span>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="tag accent">2022–2024</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">Brand Strategy</span>
+        </div>
+        <h3 class="case-title">Multi-Brand Digital Ecosystem</h3>
+        <div class="case-client">Foote, Cone &amp; Belding — Discover Card &amp; Cox Communications</div>
+        <p class="case-desc">Unified digital brand experiences across multiple platforms, embedding WCAG accessibility standards and reducing design inconsistencies causing technical debt.</p>
+        <div class="case-outcome">↑ 25% accessibility improvement · ↓ 30% post-launch defects</div>
+      </div>
+      <span class="case-arrow">↗</span>
+      <div class="case-detail">
+        <div class="case-detail-inner">
+          <div class="detail-block">
+            <h4>My Role</h4>
+            <p>Senior UX Lead — guided UX vision over two years across client teams, brand strategists, and engineering.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Process</h4>
+            <p>Established UX principles · built scalable Figma design system · embedded WCAG into team workflows · led accessibility training.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Skills Used</h4>
+            <div class="detail-skills">
+              <span class="detail-skill">Design Systems</span>
+              <span class="detail-skill">WCAG</span>
+              <span class="detail-skill">Figma</span>
+              <span class="detail-skill">Multi-platform</span>
+              <span class="detail-skill">Accessibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="case-item reveal" onclick="toggleCase(this)">
+      <span class="case-idx">03</span>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="tag accent">2021–2022</span>
+          <span class="tag">Mobile</span>
+          <span class="tag">Fitness Tech</span>
+        </div>
+        <h3 class="case-title">Life Fitness App &amp; Equipment UI</h3>
+        <div class="case-client">Life Fitness</div>
+        <p class="case-desc">Redesigned the mobile app and connected equipment UIs — unifying fragmented experiences and standardizing Figma as the team's collaboration tool.</p>
+        <div class="case-outcome">↑ 30% user engagement · ↑ 20% user satisfaction</div>
+      </div>
+      <span class="case-arrow">↗</span>
+      <div class="case-detail">
+        <div class="case-detail-inner">
+          <div class="detail-block">
+            <h4>My Role</h4>
+            <p>Senior UX Designer — led redesign over one year in an agile environment with PMs, engineers, writers, and researchers.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Process</h4>
+            <p>Audited existing flows · redesigned key workflows · standardized Figma · ran A/B tests and usability studies with product analysts.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Skills Used</h4>
+            <div class="detail-skills">
+              <span class="detail-skill">Mobile App</span>
+              <span class="detail-skill">Equipment UI</span>
+              <span class="detail-skill">A/B Testing</span>
+              <span class="detail-skill">Agile</span>
+              <span class="detail-skill">Figma</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 4 -->
+    <div class="case-item reveal" onclick="toggleCase(this)">
+      <span class="case-idx">04</span>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="tag accent">2020–2021</span>
+          <span class="tag">Enterprise</span>
+          <span class="tag">Healthcare</span>
+        </div>
+        <h3 class="case-title">Salesforce Lightning — Pfizer Call Center</h3>
+        <div class="case-client">Mavens / Pfizer</div>
+        <p class="case-desc">Rapidly scaled Pfizer's COVID-19 call center software using SLDS — delivering streamlined workflows under crisis conditions at startup speed.</p>
+        <div class="case-outcome">↑ 25% engineering efficiency · Enabled COVID-19 surge response</div>
+      </div>
+      <span class="case-arrow">↗</span>
+      <div class="case-detail">
+        <div class="case-detail-inner">
+          <div class="detail-block">
+            <h4>My Role</h4>
+            <p>Senior UX Designer — led design over ~6 months in a fast-paced startup environment under COVID-19 crisis constraints.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Process</h4>
+            <p>Stakeholder workshops · SLDS wireframes and high-fidelity prototypes · tight engineering collaboration for rapid implementation.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Skills Used</h4>
+            <div class="detail-skills">
+              <span class="detail-skill">Salesforce SLDS</span>
+              <span class="detail-skill">Healthcare</span>
+              <span class="detail-skill">Enterprise SW</span>
+              <span class="detail-skill">Prototyping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 5 -->
+    <div class="case-item reveal" onclick="toggleCase(this)">
+      <span class="case-idx">05</span>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="tag accent">2016–2018</span>
+          <span class="tag">Brand Management</span>
+          <span class="tag">Enterprise</span>
+        </div>
+        <h3 class="case-title">Global Brand Management Portal</h3>
+        <div class="case-client">Leo Burnett Worldwide</div>
+        <p class="case-desc">Designed a centralized portal to unify brand asset management across 50+ global markets — with automated consistency checks and culturally relevant UX.</p>
+        <div class="case-outcome">↓ 40% brand inconsistencies · Deployed to 50+ global markets</div>
+      </div>
+      <span class="case-arrow">↗</span>
+      <div class="case-detail">
+        <div class="case-detail-inner">
+          <div class="detail-block">
+            <h4>My Role</h4>
+            <p>Lead UX Designer — guided a multi-disciplinary team with brand strategists, developers, and regional stakeholders over two years.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Process</h4>
+            <p>User research across global teams · workflow mapping · portal design · cross-market prototype testing · post-launch analytics refinement.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Skills Used</h4>
+            <div class="detail-skills">
+              <span class="detail-skill">Brand Management</span>
+              <span class="detail-skill">Global UX</span>
+              <span class="detail-skill">Asset Management</span>
+              <span class="detail-skill">Workflow Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 6 -->
+    <div class="case-item reveal" onclick="toggleCase(this)">
+      <span class="case-idx">06</span>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="tag accent">2014–2015</span>
+          <span class="tag">E-Commerce</span>
+          <span class="tag">Conversion</span>
+        </div>
+        <h3 class="case-title">Enterprise E-Commerce Platform</h3>
+        <div class="case-client">Critical Mass</div>
+        <p class="case-desc">Led UX strategy for a large-scale e-commerce platform overhaul — simplifying checkout flows and improving mobile responsiveness to combat high cart abandonment.</p>
+        <div class="case-outcome">↓ 22% cart abandonment · ↑ 30% user engagement</div>
+      </div>
+      <span class="case-arrow">↗</span>
+      <div class="case-detail">
+        <div class="case-detail-inner">
+          <div class="detail-block">
+            <h4>My Role</h4>
+            <p>Lead UX Strategist — 12-month engagement with PMs, developers, and analysts on a cross-functional team.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Process</h4>
+            <p>User behavior analysis · stakeholder workshops · usability testing · checkout redesign · post-launch behavioral analysis.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Skills Used</h4>
+            <div class="detail-skills">
+              <span class="detail-skill">E-Commerce</span>
+              <span class="detail-skill">Conversion Opt.</span>
+              <span class="detail-skill">Analytics</span>
+              <span class="detail-skill">Mobile UX</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── EXPERTISE ─── -->
+<section id="expertise">
+  <div class="section-header reveal">
+    <span class="section-num label">02 /</span>
+    <div>
+      <h2 class="section-title">Design<br><em>Expertise</em></h2>
+      <p class="section-subtitle">A principal-level skillset spanning research, systems, and strategy — grounded in a decade of cross-industry practice.</p>
+    </div>
+  </div>
+
+  <div class="expertise-grid">
+    <div class="expertise-card reveal">
+      <span class="expertise-icon">Research</span>
+      <h3 class="expertise-name">Human-Centered<br>Research</h3>
+      <p class="expertise-desc">Stakeholder interviews, usability testing, journey mapping, and behavioral analytics. Every design decision starts with understanding real user needs.</p>
+    </div>
+    <div class="expertise-card reveal">
+      <span class="expertise-icon">Systems</span>
+      <h3 class="expertise-name">Design Systems<br>&amp; Accessibility</h3>
+      <p class="expertise-desc">Scalable, component-driven Figma systems with WCAG compliance embedded from day one — improving team velocity and reducing post-launch defects.</p>
+    </div>
+    <div class="expertise-card reveal">
+      <span class="expertise-icon">Strategy</span>
+      <h3 class="expertise-name">Product Strategy<br>&amp; Leadership</h3>
+      <p class="expertise-desc">Bridging design, engineering, and business goals. Mentoring design teams, establishing principles, and advocating for user-centered thinking at the organizational level.</p>
+    </div>
+    <div class="expertise-card reveal">
+      <span class="expertise-icon">Interaction</span>
+      <h3 class="expertise-name">Interaction &amp;<br>Prototyping</h3>
+      <p class="expertise-desc">High-fidelity Figma prototypes, iterative validation loops, and close collaboration with engineering to ensure what gets built matches what was designed.</p>
+    </div>
+    <div class="expertise-card reveal">
+      <span class="expertise-icon">Mobile</span>
+      <h3 class="expertise-name">Mobile &amp;<br>Cross-Platform</h3>
+      <p class="expertise-desc">Native app flows, responsive web, and connected hardware UIs — with a focus on consistent experience across every surface.</p>
+    </div>
+    <div class="expertise-card reveal">
+      <span class="expertise-icon">Enterprise</span>
+      <h3 class="expertise-name">Enterprise &amp;<br>Complex Systems</h3>
+      <p class="expertise-desc">Simplifying high-stakes, workflow-heavy interfaces in healthcare, finance, and SaaS — where clarity and speed directly impact business outcomes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="about-left">
+    <div class="section-header reveal" style="margin-bottom: 0;">
+      <span class="section-num label">03 /</span>
+      <div>
+        <h2 class="section-title">About<br><em>John</em></h2>
+      </div>
+    </div>
+    <p class="about-body reveal">
+      With over <em>20 years</em> in UX design, I've led initiatives for Fortune 500 companies and innovative startups — always focused on creating solutions that <em>delight users</em> and drive business success.
+      <br><br>
+      I believe great design happens at the intersection of <em>user needs, business goals,</em> and technical feasibility. My process combines rigorous research with creative problem-solving.
+    </p>
+    <div class="skills-list reveal">
+      <div class="skill-item">User Research</div>
+      <div class="skill-item">Info Architecture</div>
+      <div class="skill-item">Interaction Design</div>
+      <div class="skill-item">Prototyping</div>
+      <div class="skill-item">Usability Testing</div>
+      <div class="skill-item">Design Systems</div>
+      <div class="skill-item">Product Strategy</div>
+      <div class="skill-item">Agile Methodology</div>
+      <div class="skill-item">Figma</div>
+      <div class="skill-item">Adobe Creative</div>
+      <div class="skill-item">Sketch</div>
+      <div class="skill-item">HTML / CSS</div>
+    </div>
+  </div>
+
+  <div class="about-right">
+    <div class="label reveal" style="margin-bottom: 40px;">Experience Timeline</div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2024 – 2025</div>
+        <div class="timeline-role">Principal UX Designer</div>
+        <div class="timeline-company">PharmaCann, Inc.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2022 – 2024</div>
+        <div class="timeline-role">Senior UX Lead</div>
+        <div class="timeline-company">Foote, Cone &amp; Belding</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2021 – 2022</div>
+        <div class="timeline-role">Senior UX Designer</div>
+        <div class="timeline-company">Life Fitness</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2020 – 2021</div>
+        <div class="timeline-role">Senior UX Designer</div>
+        <div class="timeline-company">Mavens (Pfizer)</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2018 – 2019</div>
+        <div class="timeline-role">Lead UX Designer</div>
+        <div class="timeline-company">Publicis Groupe (McDonald's)</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2016 – 2018</div>
+        <div class="timeline-role">Lead UX Designer</div>
+        <div class="timeline-company">Leo Burnett Worldwide</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2017 – 2018</div>
+        <div class="timeline-role">Lead UX Designer</div>
+        <div class="timeline-company">Razorfish (Citibank)</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2014 – 2015</div>
+        <div class="timeline-role">Lead UX Strategist</div>
+        <div class="timeline-company">Critical Mass</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="section-header reveal" style="justify-content: center; display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 0;">
+    <span class="section-num label" style="color: rgba(245,243,238,0.3);">04 /</span>
+    <h2 class="section-title" style="margin-top: 16px;">Let's Work<br><em>Together</em></h2>
+  </div>
+  <p class="contact-tagline reveal">Always interested in new opportunities, design challenges, and connecting with fellow design thinkers.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:chicagouxguy@gmail.com" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      chicagouxguy@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/chicagouxguy/" target="_blank" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn Profile
+    </a>
+    <a href="#" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Schedule a Call
+    </a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <span>© 2025 John J. Hegener</span>
+  <span>Chicago, IL — Remote Friendly</span>
+  <span>Principal UX &amp; Product Designer</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 60 * (Array.from(reveals).indexOf(entry.target) % 4));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Case study expand/collapse
+  function toggleCase(el) {
+    const detail = el.querySelector('.case-detail');
+    const arrow = el.querySelector('.case-arrow');
+    const isOpen = detail.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.case-detail.open').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('.case-arrow').forEach(a => { a.style.transform = ''; a.style.color = ''; });
+
+    if (!isOpen) {
+      detail.classList.add('open');
+      arrow.style.transform = 'rotate(45deg)';
+      arrow.style.color = 'var(--accent)';
+    }
+  }
+</script>
+</body>
+</html>
