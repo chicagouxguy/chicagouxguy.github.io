@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>John J. Hegener — UX Designer Available for Hire</title>
+<meta name="description" content="John J. Hegener — Principal UX Designer with 20+ years of experience across advertising, healthcare, finance, and more. Based in Chicago, open to work."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:    #141210;
+    --muted:  #6b6661;
+    --faint:  #f5f2ec;
+    --cream:  #faf7f2;
+    --card:   #ffffff;
+    --accent: #c84b2f;
+    --border: rgba(20,18,16,0.10);
+    --radius: 14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── TICKER ─────────────────────────────────── */
+  .ticker-wrap {
+    width: 100%;
+    background: var(--ink);
+    color: #f5f2ec;
+    padding: 9px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 36s linear infinite;
+  }
+  .ticker-inner:hover { animation-play-state: paused; }
+  .ticker-item {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .ticker-item::after {
+    content: '★';
+    color: var(--accent);
+    font-size: 9px;
+  }
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── LAYOUT ─────────────────────────────────── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── HERO ───────────────────────────────────── */
+  .hero {
+    padding: 72px 0 56px;
+    text-align: center;
+    position: relative;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s ease forwards;
+  }
+  .eyebrow-line {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(48px, 9vw, 88px);
+    font-weight: 700;
+    line-height: 1.03;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s ease forwards;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(17px, 3vw, 24px);
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.3s ease forwards;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 44px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s ease forwards;
+  }
+
+  /* ── STAT ROW ───────────────────────────────── */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    max-width: 640px;
+    margin: 0 auto 64px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card);
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s ease forwards;
+  }
+  .stat {
+    flex: 1;
+    padding: 22px 12px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SECTION UTIL ───────────────────────────── */
+  .section { padding: 0 0 64px; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── AGENCY GRID ─────────────────────────────── */
+  .agency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+  }
+  .agency-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .agency-card:hover {
+    border-color: rgba(200,75,47,0.4);
+    transform: translateY(-2px);
+  }
+  .agency-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .agency-client {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* ── INDUSTRY PILLS ──────────────────────────── */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .pill:hover { background: var(--faint); border-color: rgba(20,18,16,0.2); }
+  .pip {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── WHY-HIRE CARDS ─────────────────────────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+  }
+  .why-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .why-card:hover {
+    border-color: rgba(200,75,47,0.35);
+    transform: translateY(-2px);
+  }
+  .why-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .why-card h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .why-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── QUOTE BLOCK ─────────────────────────────── */
+  .quote-wrap {
+    background: var(--ink);
+    border-radius: 18px;
+    padding: 48px 52px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 64px;
+  }
+  .quote-mark {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 140px;
+    line-height: 0.7;
+    color: var(--accent);
+    opacity: 0.25;
+    position: absolute;
+    top: 16px;
+    left: 32px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(17px, 2.8vw, 22px);
+    font-style: italic;
+    color: #f5f2ec;
+    line-height: 1.55;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+  .quote-attr {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.38);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── GOOD GUY ────────────────────────────────── */
+  .good-guy-grid {
+    background: var(--faint);
+    border-radius: var(--radius);
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .good-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .good-icon {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .good-item h4 {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .good-item p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── ORNAMENT ────────────────────────────────── */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 auto 40px;
+    max-width: 300px;
+  }
+  .orn-line { flex: 1; height: 1px; background: var(--border); }
+  .orn-diamond {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── CTA ─────────────────────────────────────── */
+  .cta-section {
+    padding: 0 0 80px;
+    text-align: center;
+  }
+  .cta-h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(30px, 5.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.12;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .cta-h2 em { font-style: italic; color: var(--accent); }
+  .cta-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 16px 44px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.03);
+  }
+  .cta-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 16px;
+    letter-spacing: 0.04em;
+  }
+  .cta-note a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .cta-note a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 22px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── RECENT WORK CARD ────────────────────────── */
+  .recent-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .recent-card:hover {
+    border-color: rgba(200,75,47,0.4);
+    transform: translateY(-2px);
+  }
+  .recent-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .recent-card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .recent-card-role {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .recent-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .recent-clients {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .recent-clients strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .recent-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .recent-bullets li {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+  .recent-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* ── AI SECTION ──────────────────────────────── */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .ai-card {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    transition: transform 0.2s;
+  }
+  .ai-card:hover { transform: translateY(-2px); }
+  .ai-card-icon {
+    font-size: 20px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .ai-card h4 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #f5f2ec;
+    margin-bottom: 6px;
+  }
+  .ai-card p {
+    font-size: 12px;
+    color: rgba(245,242,236,0.55);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .ai-tools-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .ai-tool-tag {
+    background: rgba(245,242,236,0.08);
+    border: 1px solid rgba(245,242,236,0.15);
+    color: rgba(245,242,236,0.7);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 620px) {
+    .container { padding: 0 20px; }
+    .quote-wrap { padding: 36px 24px; }
+    .good-guy-grid { grid-template-columns: 1fr; gap: 20px; }
+    .stats-row { flex-wrap: wrap; }
+    .stat { min-width: 50%; border-bottom: 1px solid var(--border); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-label="Highlights">
+  <div class="ticker-inner">
+    <span class="ticker-item">Open to work — Chicago &amp; remote</span>
+    <span class="ticker-item">20+ years of UX excellence</span>
+    <span class="ticker-item">Advertising industry veteran</span>
+    <span class="ticker-item">Fortune 500 client roster</span>
+    <span class="ticker-item">A damn good guy, by all accounts</span>
+    <span class="ticker-item">Leo Burnett · FCB · Razorfish · Publicis · Critical Mass</span>
+    <span class="ticker-item">9+ industries served · 50+ global markets</span>
+    <span class="ticker-item">AI-powered UX — not just a buzzword</span>
+    <span class="ticker-item">Open to work — Chicago &amp; remote</span>
+    <span class="ticker-item">20+ years of UX excellence</span>
+    <span class="ticker-item">Advertising industry veteran</span>
+    <span class="ticker-item">Fortune 500 client roster</span>
+    <span class="ticker-item">A damn good guy, by all accounts</span>
+    <span class="ticker-item">Leo Burnett · FCB · Razorfish · Publicis · Critical Mass</span>
+    <span class="ticker-item">9+ industries served · 50+ global markets</span>
+    <span class="ticker-item">AI-powered UX — not just a buzzword</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero" aria-labelledby="hero-heading">
+    <p class="eyebrow">
+      <span class="eyebrow-line"></span>
+      Available for hire · Chicago, IL
+      <span class="eyebrow-line"></span>
+    </p>
+    <h1 id="hero-heading">John <em>Hegener</em><br>needs a job.</h1>
+
+    <p class="hero-desc">
+      Twenty years. Nine industries. Fifty-plus global markets. One designer who turns
+      complex problems into effortless experiences — and can tell you exactly why that
+      matters to your bottom line.
+    </p>
+
+    <div class="stats-row" role="list" aria-label="Career highlights">
+      <div class="stat" role="listitem">
+        <span class="stat-num">20+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-num">9+</span>
+        <span class="stat-label">Industries</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Global Markets</span>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-num">F500</span>
+        <span class="stat-label">Client Roster</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVERTISING PEDIGREE -->
+  <section class="section reveal" aria-labelledby="ad-heading">
+    <p class="section-label" id="ad-heading">Advertising pedigree</p>
+    <div class="agency-grid">
+      <div class="agency-card">
+        <p class="agency-name">Leo Burnett Worldwide</p>
+        <p class="agency-client">Global Brand Portal · 50+ Markets</p>
+      </div>
+      <div class="agency-card">
+        <p class="agency-name">Foote, Cone &amp; Belding</p>
+        <p class="agency-client">Discover Card · Cox Communications</p>
+      </div>
+      <div class="agency-card">
+        <p class="agency-name">Razorfish</p>
+        <p class="agency-client">Citibank Digital Experience</p>
+      </div>
+      <div class="agency-card">
+        <p class="agency-name">Publicis Groupe</p>
+        <p class="agency-client">McDonald's — Lead UX</p>
+      </div>
+      <div class="agency-card">
+        <p class="agency-name">Critical Mass</p>
+        <p class="agency-client">Enterprise E-Commerce Overhaul</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="section reveal" aria-labelledby="industry-heading">
+    <p class="section-label" id="industry-heading">Industries served</p>
+    <div class="pills" role="list">
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Advertising &amp; Media</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Healthcare &amp; Pharma</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Financial Services</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Fitness &amp; Consumer Tech</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>E-Commerce &amp; Retail</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Enterprise SaaS</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Cannabis / Regulated Markets</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Telecommunications</span>
+      <span class="pill" role="listitem"><span class="pip" aria-hidden="true"></span>Food &amp; Quick Service</span>
+    </div>
+  </section>
+
+  <!-- WHY HIRE JOHN -->
+  <section class="section reveal" aria-labelledby="why-heading">
+    <p class="section-label" id="why-heading">Why hire John, specifically</p>
+    <div class="cards-grid">
+      <div class="why-card">
+        <span class="why-icon" aria-hidden="true">🎯</span>
+        <h3>Strategy-first thinking</h3>
+        <p>John doesn't just make things pretty — he asks why, works backward from business outcomes, and builds experiences that move the needle.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon" aria-hidden="true">📐</span>
+        <h3>Systems-level design</h3>
+        <p>Built scalable Figma design systems that cut post-launch defects by 30% and gave engineering teams a single source of truth.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon" aria-hidden="true">♿</span>
+        <h3>Accessibility, always</h3>
+        <p>WCAG compliance isn't a checkbox — it's embedded into every component, every spec, and every design review from day one.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon" aria-hidden="true">🌍</span>
+        <h3>Global perspective</h3>
+        <p>Designed for 50+ markets across multiple languages and cultures. Knows the difference between localization and genuine cultural empathy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT WORK -->
+  <section class="section reveal" aria-labelledby="recent-heading">
+    <p class="section-label" id="recent-heading">Most recent work</p>
+    <div class="recent-card">
+      <div class="recent-card-header">
+        <div>
+          <p class="recent-card-title">Real Chemistry</p>
+          <p class="recent-card-role">Senior UX Designer — Freelance</p>
+        </div>
+        <span class="recent-badge">May – Jul 2026</span>
+      </div>
+      <p class="recent-clients">
+        <strong>Clients served:</strong> Amgen · Genentech · Genmab · Organon · Sobi · AstraZeneca
+      </p>
+      <ul class="recent-bullets">
+        <li>Designed user-centered digital experiences for leading pharmaceutical and biotechnology brands, spanning branded and unbranded healthcare websites, campaign microsites, and educational platforms.</li>
+        <li>Produced wireframes, sitemaps, information architecture, interaction models, and user flows — plus full UX documentation and design specs that accelerated developer handoff.</li>
+        <li>Leveraged generative AI tools including ChatGPT, Claude, Gemini, and Figma AI to rapidly explore UX concepts, generate sitemap alternatives, refine user flows, and accelerate wireframe production across multiple brands simultaneously.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- AI SECTION (full-bleed dark) -->
+<div style="background: var(--ink); padding: 64px 0; margin-bottom: 64px;">
+  <div class="container">
+    <section aria-labelledby="ai-heading">
+      <p class="section-label" id="ai-heading" style="color: rgba(245,242,236,0.45);">AI-enhanced UX practice</p>
+      <div class="ai-grid">
+        <div class="ai-card">
+          <span class="ai-card-icon">🤖</span>
+          <h4>Research &amp; Synthesis</h4>
+          <p>Using AI to accelerate user research synthesis, persona development, journey mapping, and UX documentation — turning hours of analysis into actionable insights faster.</p>
+          <div class="ai-tools-row">
+            <span class="ai-tool-tag">ChatGPT</span>
+            <span class="ai-tool-tag">Claude</span>
+            <span class="ai-tool-tag">Gemini</span>
+            <span class="ai-tool-tag">Fireflies AI</span>
+          </div>
+        </div>
+        <div class="ai-card">
+          <span class="ai-card-icon">✏️</span>
+          <h4>Design &amp; Ideation</h4>
+          <p>AI-assisted wireframing, concept exploration, and visual direction generation — rapid iteration at a pace that keeps pace with fast-moving product teams.</p>
+          <div class="ai-tools-row">
+            <span class="ai-tool-tag">Figma AI</span>
+            <span class="ai-tool-tag">Midjourney</span>
+            <span class="ai-tool-tag">Grok</span>
+          </div>
+        </div>
+        <div class="ai-card">
+          <span class="ai-card-icon">⚡</span>
+          <h4>Workflow Velocity</h4>
+          <p>Developed advanced prompting workflows for information architecture, usability test plans, content organization, and stakeholder presentations — reducing repetitive work without sacrificing craft.</p>
+          <div class="ai-tools-row">
+            <span class="ai-tool-tag">Prompt Engineering</span>
+            <span class="ai-tool-tag">AI-Powered IA</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="container">
+  <div class="quote-wrap reveal" role="blockquote">
+    <span class="quote-mark" aria-hidden="true">"</span>
+    <p class="quote-text">
+      I've shipped work that reduced customer service calls by 35%, improved task completion
+      by 20%, and helped Pfizer stand up a COVID-19 call center under crisis conditions.
+      I work fast without cutting corners — and I genuinely enjoy the process.
+    </p>
+    <p class="quote-attr">— John J. Hegener, Principal UX Designer &amp; noted damn good guy</p>
+  </div>
+</div>
+
+<!-- GOOD GUY -->
+<div class="container">
+  <section class="section reveal" aria-labelledby="human-heading">
+    <p class="section-label" id="human-heading">The human behind the portfolio</p>
+    <div class="good-guy-grid">
+      <div class="good-item">
+        <div class="good-icon" aria-hidden="true">🤝</div>
+        <div>
+          <h4>Collaborative by nature</h4>
+          <p>PMs, engineers, writers, strategists — John's worked with them all, and they tend to want to work with him again.</p>
+        </div>
+      </div>
+      <div class="good-item">
+        <div class="good-icon" aria-hidden="true">💬</div>
+        <div>
+          <h4>Communicates clearly</h4>
+          <p>No design-speak jargon in stakeholder rooms. Just clear rationale, honest tradeoffs, and confident presentations.</p>
+        </div>
+      </div>
+      <div class="good-item">
+        <div class="good-icon" aria-hidden="true">🧠</div>
+        <div>
+          <h4>Calm under pressure</h4>
+          <p>He shipped enterprise software for Pfizer during a global pandemic. Your Q3 deadline is in good hands.</p>
+        </div>
+      </div>
+      <div class="good-item">
+        <div class="good-icon" aria-hidden="true">🌆</div>
+        <div>
+          <h4>Chicago through and through</h4>
+          <p>Deep roots in the city's creative and tech scene. Remote-friendly, globally minded, Midwest-grounded.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal" aria-labelledby="cta-heading">
+    <div class="ornament" aria-hidden="true">
+      <div class="orn-line"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-line"></div>
+    </div>
+    <h2 class="cta-h2" id="cta-heading">Ready to see the<br><em>actual work?</em></h2>
+    <p class="cta-sub">
+      Twenty-plus years of case studies, design systems, and shipped products — all in one place.<br>
+      Come on in. Pull up a chair. Enjoy your stay.
+    </p>
+    <a href="/portfolio.html" class="cta-btn">Enter the portfolio →</a>
+    <p class="cta-note">
+      Or reach him at <a href="mailto:chicagouxguy@gmail.com">chicagouxguy@gmail.com</a>
+    </p>
+  </section>
+</div>
+
+<footer>
+  © 2025 John J. Hegener &nbsp;·&nbsp; Principal UX &amp; Product Designer &nbsp;·&nbsp; Chicago, IL &nbsp;·&nbsp; Remote Friendly
+</footer>
+
+<script>
+  // Scroll-triggered reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
